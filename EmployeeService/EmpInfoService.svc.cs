@@ -1,9 +1,14 @@
-﻿using System;
+﻿using EmployeeService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
+
 
 namespace EmployeeService
 {
@@ -13,11 +18,43 @@ namespace EmployeeService
     {
         public void DoWork()
         {
+
+        }
+        async public Task<Employee[]> GetEmpSalary(string EmpId)
+        {
+            //Consume api 
+            //https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
+            Employee[] employee = null;
+            const string url = "https://jsonplaceholder.typicode.com/";
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await client.GetAsync("/todos");
+
+            if (response.IsSuccessStatusCode)
+            {
+                employee = await response.Content.ReadAsAsync<Employee[]>();
+            }
+            return employee;
+
+            //string retorno = EmpId == "" ? "No hay ningun parametro de id" : EmpId;
+            //return retorno;
         }
 
-        public string GetEmpSalary(string EmpId)
+        public Persona ObtenerPersona(string Identificacion)
         {
-            return "Salary of " + EmpId + " is " + 3000.00;
+            if (Identificacion == "0")
+            {
+                return new Persona() { Nombre = "Guillermo Jimenez", Edad = 25 };
+            }
+            else if (Identificacion == "1")
+            {
+                return new Persona() { Nombre = "Carolina", Edad = 26 };
+            }
+            else { 
+                return new Persona() { Error = "Persona no encontrada" };
+            }
         }
     }
 }
