@@ -13,11 +13,26 @@ namespace EmployeeService
     {
         public void DoWork()
         {
-        }
 
+        }
         public string GetEmpSalary(string EmpId)
         {
             return "Salary of " + EmpId + " is " + 3000.00;
+        }
+
+        public Persona ObtenerPersona(string Identificacion)
+        {
+            if (Identificacion == "0")
+            {
+                return new Persona() { Nombre = "Guillermo Jimenez", Edad = 25 };
+            }
+            else if (Identificacion == "1")
+            {
+                return new Persona() { Nombre = "Carolina", Edad = 26 };
+            }
+            else { 
+                return new Persona() { Error = "Persona no encontrada" };
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ namespace EmployeeService
     [ServiceContract]
     public interface IEmpInfoService
     {
+        //Retornando un json
+        
         [OperationContract]
         [WebInvoke(
             Method ="GET", 
@@ -19,7 +21,32 @@ namespace EmployeeService
             RequestFormat =WebMessageFormat.Json, 
             ResponseFormat =WebMessageFormat.Json, 
             BodyStyle = WebMessageBodyStyle.Wrapped
-            )]
+            )
+        ]
         string GetEmpSalary(string EmpId);
+
+        //Retornando como referencia de servicio o para generar un wsdl
+        
+        [OperationContract]
+        Persona ObtenerPersona(string Identificacion);
+
+        
+    }
+    [DataContract]
+    public class Persona:BaseRespuesta
+    {
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public int Edad { get; set; }
+        public int Secreto { get; set; }
+    }
+    [DataContract]
+    public class BaseRespuesta { 
+        [DataMember]
+        public string MensajeRespuesta { get; set; }
+        [DataMember]
+        public string Error { get; set; }
+
     }
 }
