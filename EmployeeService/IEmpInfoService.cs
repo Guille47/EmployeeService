@@ -23,7 +23,7 @@ namespace EmployeeService
             RequestFormat =WebMessageFormat.Json, 
             ResponseFormat =WebMessageFormat.Json, 
             BodyStyle = WebMessageBodyStyle.Wrapped
-            )
+            ) 
         ]
         Task<Employee[]> GetEmpSalary(string EmpId);
 
