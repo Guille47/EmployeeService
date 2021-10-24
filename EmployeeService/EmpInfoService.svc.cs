@@ -43,14 +43,17 @@ namespace EmployeeService
             //return retorno;
         }
         //Extrayendo desde EDT
-        public List<Employees> GetEmployees()
+        public List<Categories> GetEmployees()
         {
-            using (var context = new NorthwindEntities())
-            {
-                var blogs = context.Employees.ToList<Employees>();
-                return blogs;
+            try {
+                List<Categories> list = new List<Categories>();
+                var context = new NorthwindEntities();
+                list = context.Categories.ToList<Categories>();
+                return list;
             }
-
+            catch (Exception ex) {
+                throw;
+            }
         }
 
         public Persona ObtenerPersona(string Identificacion)

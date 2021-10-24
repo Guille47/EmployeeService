@@ -25,6 +25,6 @@ namespace EmployeeService
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Employees> Employees { get; set; }
+        public DbSet<Categories> Categories { get; set; }
     }
 }

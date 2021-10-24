@@ -43,7 +43,7 @@ namespace EmployeeService
             BodyStyle = WebMessageBodyStyle.Wrapped
             )
         ]
-        List<Employees> GetEmployees();
+        List<Categories> GetEmployees();
     }
 
     [DataContract]

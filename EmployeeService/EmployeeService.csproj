@@ -123,14 +123,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories.cs">
+      <DependentUpon>NorthwindModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EmpInfoService.svc.cs">
       <DependentUpon>EmpInfoService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Employees.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="IEmpInfoService.cs" />
     <Compile Include="Models\EmployeeI.cs" />
+    <Compile Include="Models\EmployeesEDT.cs" />
     <Compile Include="NorthwindModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
