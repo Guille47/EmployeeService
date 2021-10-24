@@ -20,6 +20,7 @@ namespace EmployeeService
         {
 
         }
+        //Consumiendo un api y enviarlo como respuesta
         async public Task<Employee[]> GetEmpSalary(string EmpId)
         {
             //Consume api 
@@ -41,6 +42,16 @@ namespace EmployeeService
             //string retorno = EmpId == "" ? "No hay ningun parametro de id" : EmpId;
             //return retorno;
         }
+        //Extrayendo desde EDT
+        public List<Employees> GetEmployees()
+        {
+            using (var context = new NorthwindEntities())
+            {
+                var blogs = context.Employees.ToList<Employees>();
+                return blogs;
+            }
+
+        }
 
         public Persona ObtenerPersona(string Identificacion)
         {
@@ -56,5 +67,6 @@ namespace EmployeeService
                 return new Persona() { Error = "Persona no encontrada" };
             }
         }
+
     }
 }

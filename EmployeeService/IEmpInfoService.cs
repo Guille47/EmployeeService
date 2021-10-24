@@ -14,8 +14,9 @@ namespace EmployeeService
     [ServiceContract]
     public interface IEmpInfoService
     {
+        //--------------------
         //Retornando un json
-        
+
         [OperationContract]
         [WebInvoke(
             Method ="GET", 
@@ -26,12 +27,23 @@ namespace EmployeeService
             ) 
         ]
         Task<Employee[]> GetEmpSalary(string EmpId);
-
+        //--------------------
         //Retornando como referencia de servicio o para generar un wsdl
         
         [OperationContract]
         Persona ObtenerPersona(string Identificacion);
-        
+        //--------------------
+        //Retornando un json
+        [OperationContract]
+        [WebInvoke(
+            Method = "GET",
+            UriTemplate = "/Emp",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped
+            )
+        ]
+        List<Employees> GetEmployees();
     }
 
     [DataContract]
